@@ -1,0 +1,80 @@
+name: nature-bioinformatics
+version: 1.0.0
+description: >
+  Declarative manifest for the static/dynamic split. SKILL.md uses this to
+  decide which bioinformatics publication fragments to load.
+
+always_load:
+  # Shared layer used by prose-oriented Nature skills.
+  - ../_shared/core/reader-workflow.md
+  - ../_shared/core/paper-type-taxonomy.md
+  - ../_shared/core/ethics.md
+  - ../_shared/core/terminology-ledger.md
+  # Skill-local core.
+  - static/core/stance.md
+  - static/core/workflow.md
+  - static/core/output-format.md
+
+axes:
+  data_modality:
+    detect: |
+      Identify the dominant data modality. Use the user's stated modality first.
+      Use scrna-seq for general single-cell RNA-seq requests; spatial-
+      transcriptomics when spatial coordinates, tissue sections, spots, niches,
+      regions, or spatial proximity are central; single-cell-multiomics when
+      RNA is combined with ATAC, protein, TCR/BCR, perturbation, or other omics.
+    values:
+      scrna-seq: static/fragments/data_modality/scrna-seq.md
+      spatial-transcriptomics: static/fragments/data_modality/spatial-transcriptomics.md
+      single-cell-multiomics: static/fragments/data_modality/single-cell-multiomics.md
+    default: scrna-seq
+    multi: false
+
+  analysis_claim:
+    detect: |
+      Identify the biological or computational claim being written, audited, or
+      answered. The user may name several. Load each relevant claim fragment.
+      If unclear, infer from terms such as markers, DEGs, pseudotime, trajectory,
+      ligand-receptor, niche, batch correction, integration, or signature.
+    values:
+      cell-annotation: static/fragments/analysis_claim/cell-annotation.md
+      differential-expression: static/fragments/analysis_claim/differential-expression.md
+      trajectory-pseudotime: static/fragments/analysis_claim/trajectory-pseudotime.md
+      cell-cell-communication: static/fragments/analysis_claim/cell-cell-communication.md
+      spatial-niche: static/fragments/analysis_claim/spatial-niche.md
+      integration-batch-effect: static/fragments/analysis_claim/integration-batch-effect.md
+      biomarker-signature: static/fragments/analysis_claim/biomarker-signature.md
+    multi: true
+
+  artifact:
+    detect: |
+      Identify the requested publication artifact. Results covers Results prose
+      and interpretation; methods covers Methods wording and reporting; figure-
+      plan covers panel logic; review-risk-audit covers pre-submission critique;
+      response-strategy covers reply planning for reviewer comments; data-
+      availability-checklist covers repositories, accessions, and code/data
+      traceability.
+    values:
+      results: static/fragments/artifact/results.md
+      methods: static/fragments/artifact/methods.md
+      figure-plan: static/fragments/artifact/figure-plan.md
+      review-risk-audit: static/fragments/artifact/review-risk-audit.md
+      response-strategy: static/fragments/artifact/response-strategy.md
+      data-availability-checklist: static/fragments/artifact/data-availability-checklist.md
+    default: results
+    multi: false
+
+references:
+  on_demand:
+    - condition: claim strength, causal language, computational inference, or scRNA/spatial overclaim checks
+      path: references/claim-risk-checklist.md
+    - condition: multi-panel figure logic, single-cell/spatial visual archetypes, or panel-risk audit
+      path: references/figure-archetypes.md
+    - condition: Methods reporting, reproducibility, software/version, QC, normalization, and statistical reporting
+      path: references/methods-reporting-checklist.md
+    - condition: GEO/SRA/ENA, ArrayExpress, controlled access, code repository, accession, version, or dataset citation guidance
+      path: references/repository-accession-guide.md
+    - condition: pre-submission audit, reviewer-response strategy, or severity/risk rubric
+      path: references/reviewer-risk-rubric.md
+    - condition: design provenance, public skill lessons, or why this skill uses task axes and audit gates
+      path: references/prior-art-design-notes.md

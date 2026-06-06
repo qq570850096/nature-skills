@@ -1,7 +1,7 @@
 {
   "name": "nature-skills",
   "version": "1.0.0",
-  "description": "Academic writing, figure, citation, data availability, reviewer, response, reader, literature-search, and paper-to-presentation skills for Nature-style scientific work.",
+  "description": "Academic writing, bioinformatics, figure, citation, data availability, reviewer, response, reader, literature-search, and paper-to-presentation skills for Nature-style scientific work.",
   "author": {
     "name": "Yuan1z0825",
     "url": "https://github.com/Yuan1z0825"
@@ -13,6 +13,8 @@
     "nature",
     "academic",
     "science",
+    "bioinformatics",
+    "single-cell",
     "figure",
     "writing",
     "citation",
@@ -23,7 +25,7 @@
   "interface": {
     "displayName": "Nature Skills",
     "shortDescription": "Nature-style academic writing, figures, citations, and paper workflows",
-    "longDescription": "Use Nature Skills to polish and draft manuscript prose, prepare publication-grade figures, add strict academic citations, draft Data Availability and FAIR metadata statements, search and verify literature, simulate reviewer reports, write peer-review responses, generate bilingual paper readers, and convert papers into Chinese journal-club PPTX decks.",
+    "longDescription": "Use Nature Skills to polish and draft manuscript prose, audit scRNA-seq and spatial transcriptomics publication claims, prepare publication-grade figures, add strict academic citations, draft Data Availability and FAIR metadata statements, search and verify literature, simulate reviewer reports, write peer-review responses, generate bilingual paper readers, and convert papers into Chinese journal-club PPTX decks.",
     "developerName": "Yuan1z0825",
     "category": "Research",
     "capabilities": [
@@ -33,6 +35,7 @@
     ],
     "defaultPrompt": [
       "Polish this abstract in Nature style.",
+      "Audit this scRNA-seq Results claim for reviewer risk.",
       "Make this paper into a Chinese journal-club PPT.",
       "Add strict Nature-family citations to this paragraph."
     ],

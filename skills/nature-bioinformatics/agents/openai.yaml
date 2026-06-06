@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nature Bioinformatics"
+  short_description: "Draft and audit scRNA/spatial publication claims"
+  default_prompt: "Help me turn my scRNA-seq or spatial transcriptomics results into Nature-style manuscript prose with a claim-evidence map, missing-input flags, and reviewer-risk audit."

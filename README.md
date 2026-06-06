@@ -218,6 +218,7 @@ In that case:
 | [`nature-response`](skills/nature-response/README.md) | Beta | Point-by-point reviewer response letters with comment triage, action mapping, and risk checks | "response to reviewers", "rebuttal letter", "major revision", "审稿意见回复" |
 | [`nature-paper2ppt`](skills/nature-paper2ppt/README.md) | Beta | Chinese PPTX decks from scientific papers | "paper PPT", "journal club", "paper to slides", "paper presentation" |
 | [`nature-academic-search`](skills/nature-academic-search/README.md) | Beta | Multi-source literature search, citation verification, and reference management | "search papers", "find articles", "academic search", "literature search", "verify DOI" |
+| [`nature-bioinformatics`](skills/nature-bioinformatics/README.md) | Draft | scRNA/spatial bioinformatics publication support with claim-evidence, figure, Methods, response, and review-risk checks | "scRNA-seq", "spatial transcriptomics", "single-cell", "生物信息学论文", "单细胞", "空间转录组" |
 
 > **Adding a new skill?** Follow the [contribution guide](#adding-a-new-skill) at the bottom of this file.
 
@@ -669,6 +670,61 @@ skills/nature-academic-search/
 and deduplicate candidate papers, verify key identifiers, look up MeSH terms for the
 biomedical subset, then export or convert the selected references for Zotero, EndNote
 or BibTeX.
+
+---
+
+## nature-bioinformatics
+
+**What it does** — Supports publication-facing bioinformatics work for scRNA-seq,
+spatial transcriptomics and single-cell multiomics manuscripts. It drafts or audits
+Results, Methods, figure plans, reviewer-response strategy, data/accession checklists
+and pre-submission review-risk reports with strict claim-evidence discipline.
+
+**Built from** — The router-style architecture used across this repository, plus
+design lessons from public scientific, medical and bioinformatics skill collections:
+`scientific-agent-skills` for broad skill cataloguing, `OpenClaw-Medical-Skills`
+for medical/bioinformatics coverage, `ClawBio` for specification-first
+reproducibility, `bioSkills` for bioinformatics task axes, and
+`medical-research-skills` for audit gates and quality checks.
+
+**Key rules enforced**
+
+| Domain | Core rule |
+|--------|-----------|
+| Claim strength | Separate observation, computational inference, biological mechanism and clinical implication |
+| Cell annotation | Require marker, reference-atlas or expert-rationale support; flag ambiguous labels |
+| DEG/pathway claims | Require comparison group, statistical unit, model/test, multiple-testing correction and boundary |
+| Trajectory | Treat pseudotime as inferred ordering, not real chronological time unless validated |
+| Cell communication | Treat ligand-receptor output as hypothesis, not confirmed interaction |
+| Spatial niche | Require spatial definition, sample-level quantification and validation boundary |
+| Reproducibility | Track software, database releases, accessions, code, metadata and figure source data |
+
+**Reference files**
+
+```text
+skills/nature-bioinformatics/
+├── README.md
+├── Readme-zh.md
+├── SKILL.md
+├── manifest.yaml
+├── static/
+├── agents/
+│   └── openai.yaml
+├── references/
+│   ├── claim-risk-checklist.md
+│   ├── figure-archetypes.md
+│   ├── methods-reporting-checklist.md
+│   ├── prior-art-design-notes.md
+│   ├── repository-accession-guide.md
+│   └── reviewer-risk-rubric.md
+└── evals/
+    └── evals.json
+```
+
+**Example workflow** — Detect `scrna-seq`, `differential-expression` and `results`,
+build a terminology ledger and claim-evidence map, draft bounded Results prose,
+then return missing inputs and reviewer-risk flags instead of inventing sample,
+marker, statistic, accession or software details.
 
 ---
 

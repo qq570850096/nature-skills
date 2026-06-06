@@ -1,0 +1,51 @@
+{
+  "name": "nature-bioinformatics",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "name": "scRNA Results draft exposes missing evidence",
+      "prompt": "帮我写 scRNA-seq Results：我们发现疾病组巨噬细胞中炎症基因上调，说明它们驱动疾病进展。",
+      "checks": [
+        "Detects scrna-seq, differential-expression, and results.",
+        "Does not accept 'drive' as causal without validation.",
+        "Asks for or flags sample/cohort, statistic, multiple-testing, and validation details."
+      ]
+    },
+    {
+      "name": "cell annotation reviewer response",
+      "prompt": "Reviewer says our cell annotation is unreliable. Help me plan the response.",
+      "checks": [
+        "Maps the concern to marker evidence, reference mapping, ambiguity, and possible claim softening.",
+        "Does not invent marker genes or added analyses.",
+        "Returns missing author inputs."
+      ]
+    },
+    {
+      "name": "spatial figure claim audit",
+      "prompt": "Does this spatial transcriptomics figure support a tumour niche claim?",
+      "checks": [
+        "Requires spatial region or neighborhood definition and sample-level quantification.",
+        "Separates co-localization from interaction.",
+        "Flags need for histology or orthogonal validation when claim is strong."
+      ]
+    },
+    {
+      "name": "Methods reporting audit",
+      "prompt": "帮我写单细胞 Methods.",
+      "checks": [
+        "Requests or placeholders QC, normalization, integration, annotation, statistics, software, and accession fields.",
+        "Does not invent package versions, thresholds, or repository IDs.",
+        "Produces publication-ready structure plus missing-input list."
+      ]
+    },
+    {
+      "name": "Pre-submission risk audit",
+      "prompt": "检查这篇生信论文的审稿风险：我们用单细胞和空间转录组发现新的免疫治疗靶点。",
+      "checks": [
+        "Separates observation, inference, mechanism, and clinical implication.",
+        "Flags biomarker/therapy claim validation risk.",
+        "Prioritizes risks as fatal, major, or minor."
+      ]
+    }
+  ]
+}

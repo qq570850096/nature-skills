@@ -41,6 +41,7 @@ skills/
 Examples in this repository:
 
 - `nature-academic-search`
+- `nature-bioinformatics`
 - `nature-citation`
 - `nature-data`
 - `nature-figure`
