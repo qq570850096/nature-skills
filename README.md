@@ -218,6 +218,7 @@ In that case:
 | [`nature-response`](skills/nature-response/README.md) | Beta | Point-by-point reviewer response letters with comment triage, action mapping, and risk checks | "response to reviewers", "rebuttal letter", "major revision", "审稿意见回复" |
 | [`nature-paper2ppt`](skills/nature-paper2ppt/README.md) | Beta | Chinese PPTX decks from scientific papers | "paper PPT", "journal club", "paper to slides", "paper presentation" |
 | [`nature-academic-search`](skills/nature-academic-search/README.md) | Beta | Multi-source literature search, citation verification, and reference management | "search papers", "find articles", "academic search", "literature search", "verify DOI" |
+| [`nature-comsol-simulation`](skills/nature-comsol-simulation/README.md) | Draft | COMSOL/FEA mechanical-engineering simulation manuscript writing, Methods reporting, validation, mesh-convergence, and reviewer-risk audit | "COMSOL paper", "mechanical simulation", "finite element", "mesh convergence", "仿真审稿风险" |
 
 > **Adding a new skill?** Follow the [contribution guide](#adding-a-new-skill) at the bottom of this file.
 
@@ -669,6 +670,78 @@ skills/nature-academic-search/
 and deduplicate candidate papers, verify key identifiers, look up MeSH terms for the
 biomedical subset, then export or convert the selected references for Zotero, EndNote
 or BibTeX.
+
+---
+
+## nature-comsol-simulation
+
+**What it does** — Supports Nature-style COMSOL Multiphysics and mechanical-engineering
+simulation manuscripts. It writes and audits Results, Methods, figure plans,
+reviewer responses, reproducibility packages, validation strategies, mesh-convergence
+reports and literature-review plans for COMSOL/finite-element work.
+
+**Built from** — A router-style publication contract informed by public COMSOL and
+FEM projects: [`MPh-py/MPh`](https://github.com/MPh-py/MPh),
+[`COMSOL_Multiphysics_MCP`](https://github.com/wjc9011/COMSOL_Multiphysics_MCP),
+[`sim-cli`](https://github.com/svd-ai-lab/sim-cli),
+[`Kratos`](https://github.com/KratosMultiphysics/Kratos),
+[`SfePy`](https://github.com/sfepy/sfepy),
+[`preCICE`](https://github.com/precice/precice),
+[`OpenRadioss`](https://github.com/OpenRadioss/OpenRadioss),
+[`OpenSees`](https://github.com/OpenSees/OpenSees), and
+[`DOLFINx`](https://github.com/FEniCS/dolfinx). The skill absorbs their design
+lessons around scriptable provenance, modular simulation domains, coupling
+transparency, verification, and reproducible computational artifacts; it does not
+copy their content.
+
+**Key rules enforced**
+
+| Domain | Core rule |
+|--------|-----------|
+| Claim discipline | Treat COMSOL results as model predictions under declared assumptions, not direct physical measurements |
+| Verification vs validation | Do not call mesh convergence or solver convergence "validation" of real-world behavior |
+| Mesh convergence | Tie convergence to the claim-critical output, such as stress, contact pressure, frequency, thermal gradient, or fracture quantity |
+| Boundary conditions | Loads, constraints, contacts, symmetry, thermal inputs, and initial conditions are part of the claim, not formatting detail |
+| Solver reporting | State study type, nonlinear settings, time stepping, coupling strategy, tolerances, warnings, and unstable cases when relevant |
+| Reproducibility | Track COMSOL version, physics interfaces, `.mph`/scripts, parameter tables, exported figure data, solver logs, and validation datasets |
+
+**Router axes**
+
+| Axis | Values |
+|------|--------|
+| `simulation_domain` | solid mechanics, structural dynamics, contact/friction, thermal-mechanical, fluid-structure, biomechanics, fracture/materials |
+| `model_claim` | stress-strain, deformation, modal frequency, contact pressure, thermal stress, parametric sensitivity, validation/calibration, optimization/design |
+| `artifact` | Results, Methods, figure plan, review-risk audit, response strategy, reproducibility checklist, literature-review plan |
+
+**Example workflow** — Provide a COMSOL Methods section, figure legend, exported table,
+or reviewer comment. The skill detects the simulation domain and claim type, loads the
+right fragments, writes the requested publication output, and returns missing inputs
+plus reviewer-risk flags instead of inventing geometry, material parameters, solver
+settings, validation data or mesh-convergence results.
+
+**Reference files**
+
+```text
+skills/nature-comsol-simulation/
+├── README.md
+├── Readme-zh.md
+├── SKILL.md
+├── manifest.yaml
+├── static/
+│   ├── core/
+│   └── fragments/
+├── references/
+│   ├── prior-art-design-notes.md
+│   ├── model-verification-checklist.md
+│   ├── mesh-convergence-checklist.md
+│   ├── boundary-condition-risk.md
+│   ├── solver-study-reporting.md
+│   ├── figure-archetypes.md
+│   ├── methods-reporting-checklist.md
+│   ├── reviewer-risk-rubric.md
+│   └── comsol-reproducibility-guide.md
+└── evals/
+```
 
 ---
 

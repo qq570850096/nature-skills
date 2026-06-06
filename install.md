@@ -42,6 +42,7 @@ Examples in this repository:
 
 - `nature-academic-search`
 - `nature-citation`
+- `nature-comsol-simulation`
 - `nature-data`
 - `nature-figure`
 - `nature-paper2ppt`
@@ -128,6 +129,12 @@ or
 
 ```text
 Turn this paper into a Chinese journal-club PPT.
+```
+
+or
+
+```text
+Audit this COMSOL simulation paper for mesh convergence and reviewer risk.
 ```
 
 If the installed skill is discovered correctly, Codex should use the skill-specific workflow instead of answering with a generic one-shot response.
@@ -274,6 +281,7 @@ Keeping the repo cloned and pointing Claude Code at the real folder is more robu
 Repeat the same pattern for other folders:
 
 - `nature-academic-search`
+- `nature-comsol-simulation`
 - `nature-figure`
 - `nature-citation`
 - `nature-data`

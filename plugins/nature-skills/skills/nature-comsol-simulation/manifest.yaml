@@ -1,0 +1,91 @@
+name: nature-comsol-simulation
+version: 1.0.0
+description: >
+  Declarative manifest for the static/dynamic split. SKILL.md uses this to
+  decide which COMSOL/mechanical simulation publication fragments to load.
+
+always_load:
+  # Shared layer used by prose-oriented Nature skills.
+  - ../_shared/core/reader-workflow.md
+  - ../_shared/core/paper-type-taxonomy.md
+  - ../_shared/core/ethics.md
+  - ../_shared/core/terminology-ledger.md
+  # Skill-local core.
+  - static/core/stance.md
+  - static/core/workflow.md
+  - static/core/output-format.md
+
+axes:
+  simulation_domain:
+    detect: |
+      Identify the dominant simulation domain. Use the user's stated COMSOL
+      module, physics interface, paper topic, or figure content first. Default
+      to solid-mechanics when the request only says mechanical simulation or FEA.
+    values:
+      solid-mechanics: static/fragments/simulation_domain/solid-mechanics.md
+      structural-dynamics: static/fragments/simulation_domain/structural-dynamics.md
+      contact-friction: static/fragments/simulation_domain/contact-friction.md
+      thermal-mechanical: static/fragments/simulation_domain/thermal-mechanical.md
+      fluid-structure: static/fragments/simulation_domain/fluid-structure.md
+      biomechanics: static/fragments/simulation_domain/biomechanics.md
+      fracture-materials: static/fragments/simulation_domain/fracture-materials.md
+    default: solid-mechanics
+    multi: false
+
+  model_claim:
+    detect: |
+      Identify the engineering or physical claim being written, audited, or
+      answered. The user may name several. Load each relevant claim fragment.
+      If unclear, infer from terms such as stress, strain, deformation, mode,
+      resonance, contact pressure, thermal stress, parameter sweep, validation,
+      calibration, optimization, or design.
+    values:
+      stress-strain: static/fragments/model_claim/stress-strain.md
+      deformation-displacement: static/fragments/model_claim/deformation-displacement.md
+      modal-frequency: static/fragments/model_claim/modal-frequency.md
+      contact-pressure: static/fragments/model_claim/contact-pressure.md
+      thermal-stress: static/fragments/model_claim/thermal-stress.md
+      parametric-sensitivity: static/fragments/model_claim/parametric-sensitivity.md
+      validation-calibration: static/fragments/model_claim/validation-calibration.md
+      optimization-design: static/fragments/model_claim/optimization-design.md
+    multi: true
+
+  artifact:
+    detect: |
+      Identify the requested publication artifact. Results covers Results prose
+      and interpretation; methods covers Methods wording and reporting; figure-
+      plan covers panel logic; review-risk-audit covers pre-submission critique;
+      response-strategy covers reply planning for reviewer comments;
+      reproducibility-checklist covers COMSOL model/package traceability; and
+      literature-review-plan covers a review-paper or related-work strategy.
+    values:
+      results: static/fragments/artifact/results.md
+      methods: static/fragments/artifact/methods.md
+      figure-plan: static/fragments/artifact/figure-plan.md
+      review-risk-audit: static/fragments/artifact/review-risk-audit.md
+      response-strategy: static/fragments/artifact/response-strategy.md
+      reproducibility-checklist: static/fragments/artifact/reproducibility-checklist.md
+      literature-review-plan: static/fragments/artifact/literature-review-plan.md
+    default: results
+    multi: false
+
+references:
+  on_demand:
+    - condition: design provenance, GitHub prior art, or why this skill uses model axes and audit gates
+      path: references/prior-art-design-notes.md
+    - condition: verification, benchmark comparison, analytic solution, manufactured solution, or sanity checks
+      path: references/model-verification-checklist.md
+    - condition: mesh convergence, element order, mesh independence, local refinement, or numerical uncertainty
+      path: references/mesh-convergence-checklist.md
+    - condition: boundary conditions, loads, constraints, contacts, symmetry, initial conditions, or physical realism
+      path: references/boundary-condition-risk.md
+    - condition: solver settings, study type, nonlinear convergence, time stepping, coupling, or parametric sweep reporting
+      path: references/solver-study-reporting.md
+    - condition: multi-panel figure logic, COMSOL contour plots, validation panels, or panel-risk audit
+      path: references/figure-archetypes.md
+    - condition: Methods reporting, reproducibility, COMSOL version, physics interface, geometry, material, mesh, solver, and code/model availability
+      path: references/methods-reporting-checklist.md
+    - condition: pre-submission audit, reviewer-response strategy, or severity/risk rubric
+      path: references/reviewer-risk-rubric.md
+    - condition: COMSOL mph files, Java/MATLAB/Python scripts, parameters, exports, solver logs, and repository package traceability
+      path: references/comsol-reproducibility-guide.md

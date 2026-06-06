@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nature COMSOL Simulation"
+  short_description: "Audit and write COMSOL/FEA simulation papers"
+  default_prompt: "Audit my COMSOL mechanical simulation Results, Methods, figures, validation, mesh convergence, and reviewer-risk flags for a Nature-style manuscript."

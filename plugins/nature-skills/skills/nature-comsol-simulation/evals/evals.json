@@ -1,0 +1,51 @@
+{
+  "skill": "nature-comsol-simulation",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "name": "stress_results",
+      "prompt": "Help me write Nature-style Results for a COMSOL solid-mechanics stress simulation.",
+      "must_check": [
+        "geometry, material model, loads, constraints, mesh, solver, validation, and claim boundaries",
+        "no causal or design-superiority claim without validation",
+        "ready-to-use Results text plus missing inputs and reviewer-risk flags"
+      ]
+    },
+    {
+      "name": "mesh_convergence_reply",
+      "prompt": "A reviewer says our mesh convergence is insufficient. Help me reply.",
+      "must_check": [
+        "distinguish existing evidence from proposed additional analysis",
+        "request or expose mesh levels, monitored quantities, and convergence tolerance",
+        "avoid inventing numerical convergence rates"
+      ]
+    },
+    {
+      "name": "contact_figure_audit",
+      "prompt": "Does this COMSOL contact-pressure figure support our claim about wear reduction?",
+      "must_check": [
+        "separate contact-pressure distribution from wear mechanism",
+        "flag missing friction, contact formulation, experimental wear validation, and mesh refinement near contact",
+        "suggest figure panels that would support the claim"
+      ]
+    },
+    {
+      "name": "methods_reporting",
+      "prompt": "Write the Methods for a thermal-mechanical COMSOL model.",
+      "must_check": [
+        "COMSOL version, physics interfaces, coupling, material properties, boundary conditions, mesh, solver, and outputs",
+        "parameter and unit traceability",
+        "no fabricated values or software versions"
+      ]
+    },
+    {
+      "name": "review_risk_audit",
+      "prompt": "Check the reviewer risk of this COMSOL mechanical simulation manuscript.",
+      "must_check": [
+        "verification versus validation distinction",
+        "claim strength tiers",
+        "missing inputs, risk severity, and concrete fixes"
+      ]
+    }
+  ]
+}
